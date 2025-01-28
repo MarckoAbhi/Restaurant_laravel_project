@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MenuModel;
+use App\Models\CartModel;
 use Illuminate\Support\Facades\DB;  // Import DB facade for transactions
 use Illuminate\Support\Facades\Session; // Import Session facade
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 class MenuController extends Controller
 {
@@ -80,14 +84,19 @@ class MenuController extends Controller
      * Display the specified resource.
      */
     public function showCart()
-    {
-        $cartItems = Cart::all(); 
-        $totalPrice = $cartItems->sum(function ($item) {
-            return $item->price * $item->quantity;
-        });
-    
-        return view('cart', compact('cartItems', 'totalPrice'));
-    }
+{
+    // Get all cart items with status != 9
+    $cartItems = CartModel::where('status', '!=', 9) // Exclude deleted items
+                          ->with('menu') // Eager load the related menu item details
+                          ->get();
+
+    // Calculate the total price by summing the prices of the items in the cart
+    $totalPrice = $cartItems->sum(function ($item) {
+        return $item->menu ? $item->menu->price : 0; // Get price from related menu item
+    });
+
+    return view('menu.cart', compact('cartItems', 'totalPrice'));
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -95,6 +104,14 @@ class MenuController extends Controller
     public function edit(string $id)
     {
         //
+    }
+    
+    public function clearCart()
+    {
+        // Clear all items from the cart by setting their status to 9 (deleted)
+        CartModel::update(['status' => 9]);
+    
+        return redirect()->route('cart.show')->with('success', 'Your cart has been cleared.');
     }
 
     /**
@@ -133,6 +150,32 @@ class MenuController extends Controller
         return redirect()->route('menu.index',$id)->with('success', 'Menu item updated successfully');
     }
 
+    public function add($itemId)
+{
+    // Retrieve the item from the database
+    $item = MenuModel::findOrFail($itemId); // Assuming you're using MenuModel here
+
+    // Check if the item already exists in the cart (no need for user_id)
+    $existingCartItem = CartModel::where('item_id', $item->id)
+                                 ->where('status', '!=', 9) // Ensure the item isn't deleted
+                                 ->first();
+
+    // If item already exists, just return an info message
+    if ($existingCartItem) {
+        return redirect()->back()->with('info', 'This item is already in your cart.');
+    }
+
+    // Add the item to the cart table (no user_id)
+    CartModel::create([
+        'item_id' => $item->id,
+        'status' => 1, // Active status
+        'created_by' => null,  // You can leave this as null, or set it to some default value
+        'updated_by' => null,
+    ]);
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', $item->name . ' has been added to your cart!');
+}
     /**
      * Remove the specified resource from storage.
      */

@@ -29,8 +29,18 @@
 
                     <div class="flex justify-between mt-4">
                         <!-- Add to Cart Button -->
-
-
+                        <form action="{{ route('cart.add', $item->id) }}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition duration-300">
+                                Add to Cart
+                            </button>
+                        </form>
+                        @if (session('success'))
+                        <div class="bg-green-500 text-white px-4 py-2 rounded-md mb-4">
+                            {{ session('success') }}
+                        </div>
+                        @endif
                         <!-- Delete Button -->
                         <form action="{{ route('menu.destroy', $item->id) }}" method="POST"
                             onsubmit="return confirmDelete(event, '{{ $item->name }}')">

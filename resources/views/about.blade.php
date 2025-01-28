@@ -28,17 +28,17 @@
         <!-- Team Members -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-6">
             <div class="text-center">
-                <img src="https://via.placeholder.com/150" alt="Chef 1" class="w-32 h-32 rounded-full mx-auto">
+                <img src="{{ asset('images/chef1.png') }}" alt="Chef 1" class="w-32 h-32 rounded-full mx-auto">
                 <h4 class="mt-4 text-xl font-semibold text-gray-800">Chef John Doe</h4>
                 <p class="text-gray-600">Head Chef</p>
             </div>
             <div class="text-center">
-                <img src="https://via.placeholder.com/150" alt="Chef 2" class="w-32 h-32 rounded-full mx-auto">
+                <img src="{{ asset('images/chef2.png') }}" alt="Chef 2" class="w-32 h-32 rounded-full mx-auto">
                 <h4 class="mt-4 text-xl font-semibold text-gray-800">Chef Jane Smith</h4>
                 <p class="text-gray-600">Sous Chef</p>
             </div>
             <div class="text-center">
-                <img src="https://via.placeholder.com/150" alt="Chef 3" class="w-32 h-32 rounded-full mx-auto">
+                <img src="{{ asset('images/chef3.png') }}" alt="Chef 3" class="w-32 h-32 rounded-full mx-auto">
                 <h4 class="mt-4 text-xl font-semibold text-gray-800">Mark Williams</h4>
                 <p class="text-gray-600">Restaurant Manager</p>
             </div>
@@ -62,9 +62,7 @@
     <div class="bg-blue-500 text-white rounded-lg py-6 mt-8 text-center">
         <h4 class="text-xl font-semibold">Visit Us or Make a Reservation</h4>
         <p class="mt-4 text-gray-200">Come experience the best of what we offer. We can't wait to serve you!</p>
-        <a href="{{ route('reservation.create') }}"
-            class="mt-4 inline-block bg-yellow-500 text-gray-800 px-6 py-2 rounded-lg hover:bg-yellow-400 transition duration-300">Make
-            a Reservation</a>
+
     </div>
 </div>
 @endsection

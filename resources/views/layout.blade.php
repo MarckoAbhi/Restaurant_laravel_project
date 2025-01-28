@@ -120,11 +120,11 @@
                 <div class="hidden md:flex space-x-4">
                     <a class="text-purple-600 hover:text-white font-semibold" href="/">Home</a>
                     <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('menu') }}">Menu</a>
-                    <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('/about') }}">About</a>
                     <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('menu/cart') }}">Cart</a>
+                    <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('/about') }}">About</a>
                     <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('/contact') }}">Contact</a>
-                    <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('menu/login') }}">Login</a>
-                    <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('menu/signup') }}">Sign
+                    <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('auth/login') }}">Login</a>
+                    <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('auth/signup') }}">Sign
                         Up</a>
                 </div>
                 <div class="md:hidden">
@@ -137,6 +137,7 @@
             <div class="hidden md:hidden" id="mobile-menu">
                 <a class="block text-gray-300 hover:text-white px-2 py-1" href="#">Home</a>
                 <a class="block text-gray-300 hover:text-white px-2 py-1" href="{{ url('menu') }}">Menu</a>
+                <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('menu/cart') }}">Cart</a>
                 <a class="block text-gray-300 hover:text-white px-2 py-1" href="#">About</a>
                 <a class="block text-gray-300 hover:text-white px-2 py-1" href="#">Contact</a>
                 <a class="block text-gray-300 hover:text-white px-2 py-1" href="#">Login</a>
