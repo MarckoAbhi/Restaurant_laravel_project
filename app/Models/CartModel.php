@@ -18,4 +18,9 @@ class CartModel extends Model
         'updated_at',
         'updated_by'
     ];
+
+    public function menu()
+    {
+        return $this->belongsTo(MenuModel::class, 'item_id');
+    }
 }

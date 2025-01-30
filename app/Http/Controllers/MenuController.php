@@ -80,23 +80,39 @@ class MenuController extends Controller
         return redirect()->route('menu.index')->with('success', 'Menu item added successfully!');
     }
 
+
+    public function show()
+{
+    // Fetch the menu item by ID
+    // $menuItem = MenuModel::findOrFail($id);
+
+    // return view('menu.show', compact('menuItem'));
+}
     /**
      * Display the specified resource.
      */
-    public function showCart()
-{
-    // Get all cart items with status != 9
-    $cartItems = CartModel::where('status', '!=', 9) // Exclude deleted items
-                          ->with('menu') // Eager load the related menu item details
-                          ->get();
-
-    // Calculate the total price by summing the prices of the items in the cart
-    $totalPrice = $cartItems->sum(function ($item) {
-        return $item->menu ? $item->menu->price : 0; // Get price from related menu item
-    });
-
-    return view('menu.cart', compact('cartItems', 'totalPrice'));
-}
+    public function cart()
+    {
+        // Get all cart items with status != 9
+        $cartItems = CartModel::where('status', '!=', 9)->get();
+    
+        // Check if there are any cart items
+        if ($cartItems->isEmpty()) {
+            return view('cart')->with('message', 'Your cart is empty.');
+        }
+    
+        // Initialize total price
+        $totalPrice = 0;
+    
+        // Calculate total price based on menu prices
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->menu) { // Ensure related menu item exists
+                $totalPrice += $cartItem->menu->price;
+            }
+        }
+    
+        return view('cart', compact('cartItems', 'totalPrice'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -109,9 +125,9 @@ class MenuController extends Controller
     public function clearCart()
     {
         // Clear all items from the cart by setting their status to 9 (deleted)
-        CartModel::update(['status' => 9]);
+        CartModel::where('status', '!=', 9)->update(['status' => 9]);
     
-        return redirect()->route('cart.show')->with('success', 'Your cart has been cleared.');
+        return redirect()->route('cart')->with('success', 'Your cart has been cleared.');
     }
 
     /**

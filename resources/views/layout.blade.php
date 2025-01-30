@@ -17,95 +17,103 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Poppins:wght@400;700&display=swap"
-        rel="stylesheet">
-    <title>Restaurant</title>
-    <style>
-    * {
-        font-family: "Poppins", sans-serif;
-    }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
-    .recipe-card {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
 
-    .recipe-image {
-        width: 50%;
-        height: auto;
-    }
+        <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    .recipe-info {
-        width: 60%;
-        padding: 20px;
-        background-color: #f7f7f7;
-        height: 36rem;
-        left: 0;
-    }
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
+        <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Poppins:wght@400;700&display=swap"
+            rel="stylesheet">
+        <title>Restaurant</title>
+        <style>
+        * {
+            font-family: "Poppins", sans-serif;
+        }
 
-    .recipe-title {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
+        .recipe-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-    .recipe-description {
-        font-size: 16px;
-    }
+        .recipe-image {
+            width: 50%;
+            height: auto;
+        }
 
-    .carousel-item img {
-        width: 60%;
-        height: 30rem;
-        object-fit: cover;
-    }
+        .recipe-info {
+            width: 60%;
+            padding: 20px;
+            background-color: #f7f7f7;
+            height: 36rem;
+            left: 0;
+        }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+        .recipe-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
 
-    @media (max-width: 992px) {
+        .recipe-description {
+            font-size: 16px;
+        }
+
         .carousel-item img {
             width: 60%;
             height: 30rem;
+            object-fit: cover;
         }
-    }
 
-    @media (max-width: 768px) {
-        .carousel-item img {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .carousel-item img {
+                width: 60%;
+                height: 30rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                width: 100%;
+                height: 30rem;
+            }
+        }
+
+        #mobile-menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8);
             width: 100%;
-            height: 30rem;
+            padding: 1rem;
+            display: none;
         }
-    }
 
-    #mobile-menu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 100%;
-        padding: 1rem;
-        display: none;
-    }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
 
-    nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-    }
-
-    body {
-        padding-top: 80px;
-    }
-    </style>
+        body {
+            padding-top: 80px;
+        }
+        </style>
 </head>
 
 <body>
@@ -162,6 +170,11 @@
     document.getElementById('menu-btn').addEventListener('click', function() {
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenu.classList.toggle('hidden'); // Toggles visibility of the mobile menu
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#carouselExampleIndicators').carousel();
     });
     </script>
 </body>

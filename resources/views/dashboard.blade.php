@@ -32,17 +32,17 @@
                     Discover our story and the passion behind our food
                 </p>
             </div>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
                 </ol>
-                <div class="carousel-inner  ">
+                <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="{{ asset('images/corousel1.png') }}" alt="First slide">
                         <div class="carousel-caption d-none d-md-block">
-                            <h2>Himalayan biryani</h2>
+                            <h2>Himalayan Biryani</h2>
                             <p>A brief description of the dish and its ingredients.</p>
                         </div>
                     </div>
@@ -61,13 +61,13 @@
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                    <span class="visually-hidden">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                    <span class="visually-hidden">Next</span>
                 </a>
             </div>
         </div>
@@ -132,53 +132,6 @@
             </div>
         </div>
     </section>
-    <!-- Contact Section -->
-    <section class="py-12 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl md:text-4xl font-bold">
-                    Contact Us
-                </h2>
-                <p class="mt-4 text-gray-600">
-                    Get in touch with us for reservations or inquiries
-                </p>
-            </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <img alt="A cozy restaurant interior with elegant table settings"
-                    class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" src="{{ asset('images/restaurant.png') }}" />
-                <div class="mt-8 md:mt-0 md:ml-8">
-                    <form>
-                        <div class="mb-4">
-                            <label class="block text-gray-700" for="name">
-                                Name
-                            </label>
-                            <input
-                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                id="name" type="text" />
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700" for="email">
-                                Email
-                            </label>
-                            <input
-                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                id="email" type="email" />
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700" for="message">
-                                Message
-                            </label>
-                            <textarea
-                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                id="message"></textarea>
-                        </div>
-                        <button class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" type="submit">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+
 </div>
 @endsection

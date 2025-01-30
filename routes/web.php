@@ -5,6 +5,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController; // ✅ Import added
 
 // Default Home Route
 Route::get('/', function () {
@@ -28,7 +29,7 @@ Route::post('auth/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('auth/signup', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('auth/signup', [RegisterController::class, 'register']);
 
-// Password Reset Routes (if you're using Laravel's default Auth)
+// Password Reset Routes
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 
 // Menu Routes
@@ -36,6 +37,6 @@ Route::resource('/pages', RestaurantController::class);
 Route::resource('/menu', MenuController::class);
 
 // Cart Routes
+Route::get('cart', [MenuController::class, 'cart'])->name('cart'); 
 Route::post('/cart/add/{itemId}', [MenuController::class, 'add'])->name('cart.add');
-Route::get('/cart', [MenuController::class, 'showCart'])->name('cart.show');
-Route::post('/cart/clear', [MenuController::class, 'clearCart'])->name('cart.clear');
+Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');

@@ -12,14 +12,15 @@
     </div>
     @endif
 
-    @if (count($cartItems) > 0)
+    @if ($cartItems->count() > 0)
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         @foreach ($cartItems as $cartItem)
         @if ($cartItem->menu)
-        <!-- Check if menu exists -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            @if ($cartItem->menu->image)
             <img alt="{{ $cartItem->menu->name }}" class="w-full h-48 object-cover"
                 src="{{ asset('storage/' . $cartItem->menu->image) }}" />
+            @endif
             <div class="p-4">
                 <h3 class="text-xl font-bold">{{ $cartItem->menu->name }}</h3>
                 <p class="mt-2 text-gray-600">Price: ${{ number_format($cartItem->menu->price, 2) }}</p>
@@ -32,7 +33,7 @@
     <div class="mt-6 flex justify-between items-center">
         <p class="text-xl font-bold">Total Price: ${{ number_format($totalPrice, 2) }}</p>
 
-        <!-- Optional: Button to clear cart -->
+        <!-- Clear Cart Button -->
         <form action="{{ route('cart.clear') }}" method="POST">
             @csrf
             <button type="submit"

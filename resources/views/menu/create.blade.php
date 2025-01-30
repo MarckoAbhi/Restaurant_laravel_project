@@ -21,7 +21,7 @@
                     <div class="relative">
                         <label for="name" class="block text-sm font-medium text-gray-700">Menu Item Name</label>
                         <input type="text" name="name" id="name"
-                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-500 focus:border-blue-500"
                             required>
                     </div>
 
@@ -54,22 +54,18 @@
                 </div>
 
                 <div class="mt-6">
-                    <!-- Status Dropdown -->
-                    <div class="relative">
-                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                        <select name="status" id="status"
-                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all"
-                            required>
-                            <option value="">Select Status</option>
-                            <option value="1">Active</option>
-                            <option value="2">Inactive</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="pull-right mt-4">
-                    <a class="btn btn-dark" href="{{ route('menu.index') }}"> Back</a>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                    <select name="status" id="status"
+                        class="mt-1 w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        <option value="">Select Status</option>
+                        <option value="1">Active</option>
+                        <option value="2">Inactive</option>
+                    </select>
+                </div><br>
+                <div><a href="{{ route('menu.index') }}"
+                        class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-800">Back</a>
+                    <button type="submit"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-800">Submit</button>
                 </div>
             </form>
         </div>
