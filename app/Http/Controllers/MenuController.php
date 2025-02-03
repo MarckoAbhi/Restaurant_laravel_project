@@ -93,27 +93,25 @@ class MenuController extends Controller
      */
     public function cart()
     {
-        // Get all cart items with status != 9
-        $cartItems = CartModel::where('status', '!=', 9)->get();
+        // Fetch all cart items with menu relationship
+        $cartItems = CartModel::where('status', '!=', 9)
+                              ->with('menu') // Ensure menu data is loaded
+                              ->get();
     
-        // Check if there are any cart items
+        // Debugging: Check if data is being retrieved
         if ($cartItems->isEmpty()) {
-            return view('cart')->with('message', 'Your cart is empty.');
+            dd('Cart is empty, no items found.');
+        } else {
+            dd($cartItems); // Show all cart items
         }
     
-        // Initialize total price
-        $totalPrice = 0;
+        // Calculate total price
+        $totalPrice = $cartItems->sum(function ($cartItem) {
+            return $cartItem->menu ? $cartItem->menu->price : 0;
+        });
     
-        // Calculate total price based on menu prices
-        foreach ($cartItems as $cartItem) {
-            if ($cartItem->menu) { // Ensure related menu item exists
-                $totalPrice += $cartItem->menu->price;
-            }
-        }
-    
-        return view('cart', compact('cartItems', 'totalPrice'));
+        return view('menu.cart', compact('cartItems', 'totalPrice'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -169,14 +167,12 @@ class MenuController extends Controller
     public function add($itemId)
 {
     // Retrieve the item from the database
-    $item = MenuModel::findOrFail($itemId); // Assuming you're using MenuModel here
+    $item = MenuModel::findOrFail($itemId); 
 
-    // Check if the item already exists in the cart (no need for user_id)
     $existingCartItem = CartModel::where('item_id', $item->id)
-                                 ->where('status', '!=', 9) // Ensure the item isn't deleted
+                                 ->where('status', '!=', 9) 
                                  ->first();
 
-    // If item already exists, just return an info message
     if ($existingCartItem) {
         return redirect()->back()->with('info', 'This item is already in your cart.');
     }
@@ -185,11 +181,10 @@ class MenuController extends Controller
     CartModel::create([
         'item_id' => $item->id,
         'status' => 1, // Active status
-        'created_by' => null,  // You can leave this as null, or set it to some default value
+        'created_by' => null,  
         'updated_by' => null,
     ]);
 
-    // Redirect back with a success message
     return redirect()->back()->with('success', $item->name . ' has been added to your cart!');
 }
     /**

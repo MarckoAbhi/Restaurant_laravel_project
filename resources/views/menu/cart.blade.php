@@ -16,6 +16,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         @foreach ($cartItems as $cartItem)
         @if ($cartItem->menu)
+        <!-- Ensure menu is not null -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             @if ($cartItem->menu->image)
             <img alt="{{ $cartItem->menu->name }}" class="w-full h-48 object-cover"

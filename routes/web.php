@@ -37,6 +37,6 @@ Route::resource('/pages', RestaurantController::class);
 Route::resource('/menu', MenuController::class);
 
 // Cart Routes
-Route::get('cart', [MenuController::class, 'cart'])->name('cart'); 
+Route::get('cart', [MenuController::class, 'cart'])->name('cart');
 Route::post('/cart/add/{itemId}', [MenuController::class, 'add'])->name('cart.add');
-Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+Route::post('/cart/clear', [MenuController::class, 'clearCart'])->name('cart.clear');
