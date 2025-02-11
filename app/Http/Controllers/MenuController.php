@@ -92,26 +92,22 @@ class MenuController extends Controller
      * Display the specified resource.
      */
     public function cart()
-    {
-        // Fetch all cart items with menu relationship
-        $cartItems = CartModel::where('status', '!=', 9)
-                              ->with('menu') // Ensure menu data is loaded
-                              ->get();
-    
-        // Debugging: Check if data is being retrieved
-        if ($cartItems->isEmpty()) {
-            dd('Cart is empty, no items found.');
-        } else {
-            dd($cartItems); // Show all cart items
-        }
-    
-        // Calculate total price
-        $totalPrice = $cartItems->sum(function ($cartItem) {
-            return $cartItem->menu ? $cartItem->menu->price : 0;
-        });
-    
-        return view('menu.cart', compact('cartItems', 'totalPrice'));
-    }
+{
+    // Fetch all cart items with menu relationship
+    $cartItems = CartModel::where('status', '!=', 9)
+                          ->with('menu')
+                          ->get();
+
+    // Debug: Dump the retrieved cart items
+    //dd($cartItems);
+
+    // Calculate total price
+    $totalPrice = $cartItems->sum(function ($cartItem) {
+        return $cartItem->menu ? $cartItem->menu->price : 0;
+    });
+
+    return view('menu.cart', compact('cartItems', 'totalPrice'));
+}
     /**
      * Show the form for editing the specified resource.
      */
@@ -184,6 +180,7 @@ class MenuController extends Controller
         'created_by' => null,  
         'updated_by' => null,
     ]);
+    //dd(CartModel::all());
 
     return redirect()->back()->with('success', $item->name . ' has been added to your cart!');
 }

@@ -125,7 +125,7 @@
                     style="font-family: 'Leckerli One', serif; font-size: 3rem;">
                     Restaurant
                 </a>
-                <div class="hidden md:flex space-x-4">
+                <div class="hidden md:flex space-x-3">
                     <a class="text-purple-600 hover:text-white font-semibold" href="/">Home</a>
                     <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('menu') }}">Menu</a>
                     <a class="text-purple-600 hover:text-white font-semibold" href="{{ url('menu/cart') }}">Cart</a>
